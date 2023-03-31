@@ -1,5 +1,51 @@
 <template>
-  <div className="algolia-search p-20">
+  <header
+    class="flex justify-between p-6 items-center shadow-md fixed top-0 w-screen"
+    style="
+      backdrop-filter: saturate(50%) blur(8px);
+      background-color: rgba(255, 255, 255, 0.7);
+    "
+  >
+    <div class="flex">
+      <img class="h-6 mr-2" src="/logo.png" alt="" />
+      <span class="font-bold text-base font-sans">搜索</span>
+    </div>
+    <ul class="flex gap-6 font-sans text-xs">
+      <li>
+        <a
+          class="hover:text-blue-600"
+          target="_blank"
+          href="https://creator.ark.online/"
+          >官网</a
+        >
+      </li>
+      <li>
+        <a
+          class="hover:text-blue-600"
+          target="_blank"
+          href="https://meta.feishu.cn/wiki/wikcnmY0MQweLdbnlywkJJiDucd"
+          >教程</a
+        >
+      </li>
+      <li>
+        <a
+          class="hover:text-blue-600"
+          target="_blank"
+          href="https://api-docs.ark.online/"
+          >API</a
+        >
+      </li>
+      <li>
+        <a
+          class="hover:text-blue-600"
+          target="_blank"
+          href="https://forum.ark.online/"
+          >论坛</a
+        >
+      </li>
+    </ul>
+  </header>
+  <div className="algolia-search px-20 py-24">
     <div class="flex flex-col">
       <h1 class="text-2xl mb-4">
         {{ input ? `搜索的关键词是"${input}""` : `开始搜索文档` }}
@@ -59,7 +105,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import algoliasearch, { type SearchIndex } from "algoliasearch";
 import type { Hit, SearchResponse } from "@algolia/client-search";
 import type { AlgoliaResult } from "./type";
@@ -71,6 +117,14 @@ const hits = ref<Hit<AlgoliaResult>[]>([]);
 const select = ref("");
 const nextRef = ref<HTMLDivElement>();
 const page = ref(0);
+
+const urlParams = computed(() => {
+  const params = new URL(window.location.href).searchParams;
+  return {
+    search: params.get("search"),
+    docType: params.get("doc-type"),
+  };
+});
 
 watch([input, select], async ([v, s]) => {
   if (!v) return;
@@ -163,6 +217,13 @@ onMounted(async () => {
   );
   searchIndex.value = client.initIndex("all-docs");
   loadNextPage();
+  if (urlParams.value.search) {
+    input.value = urlParams.value.search;
+  }
+
+  if (urlParams.value.docType) {
+    select.value = urlParams.value.docType;
+  }
 });
 </script>
 
