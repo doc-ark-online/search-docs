@@ -212,13 +212,13 @@ function loadNextPage() {
 
 onMounted(async () => {
   const client = algoliasearch(
-    // "89BNK6UU0A",
-    // "f691939e4fa8b414f92c84c288d2097a"
-    "I2PHYUBLCN",
-    "62ee775311415d26549e0e30fef5aa38"
+    "89BNK6UU0A",
+    "f691939e4fa8b414f92c84c288d2097a"
+    // "I2PHYUBLCN",
+    // "62ee775311415d26549e0e30fef5aa38"
     // indexName: 'api-docs_prodigytech'
   );
-  searchIndex.value = client.initIndex("api-docs_prodigytech");
+  searchIndex.value = client.initIndex("all-docs");
   loadNextPage();
   if (urlParams.value.search) {
     input.value = urlParams.value.search;
