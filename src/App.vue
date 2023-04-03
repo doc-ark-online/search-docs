@@ -77,7 +77,7 @@
           v-model="select"
         >
           <option value="">全部</option>
-          <option value="tags:product-docs">产品文档</option>
+          <!-- <option value="tags:product-docs">产品文档</option> -->
           <option value="tags:api-docs">Api文档</option>
         </select>
       </div>
@@ -212,13 +212,13 @@ function loadNextPage() {
 
 onMounted(async () => {
   const client = algoliasearch(
-    "89BNK6UU0A",
-    "f691939e4fa8b414f92c84c288d2097a"
-    // "I2PHYUBLCN",
-    // "62ee775311415d26549e0e30fef5aa38"
+    // "89BNK6UU0A",
+    // "f691939e4fa8b414f92c84c288d2097a"
+    "I2PHYUBLCN",
+    "62ee775311415d26549e0e30fef5aa38"
     // indexName: 'api-docs_prodigytech'
   );
-  searchIndex.value = client.initIndex("all-docs");
+  searchIndex.value = client.initIndex("api-docs_prodigytech");
   loadNextPage();
   if (urlParams.value.search) {
     input.value = urlParams.value.search;
