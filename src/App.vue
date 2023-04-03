@@ -90,6 +90,7 @@
         <a
           class="text-blue-600 hover:underline hover:decoration-2 hover:decoration-blue-600 text-xl my-4 block"
           :href="item.url"
+          target="_blank"
           v-html="getText(item)"
         ></a>
         <hr />
