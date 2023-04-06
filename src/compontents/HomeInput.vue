@@ -32,6 +32,7 @@
           v-model="input"
           class="flex-1 focus:ring-blue-500 focus:outline-none"
           type="text"
+          @keyup.enter="goSearch"
         />
       </div>
       <button
