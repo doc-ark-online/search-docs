@@ -3,6 +3,7 @@ export interface AlgoliaResult {
   hierarchy: Hierarchy;
   type: keyof Hierarchy | "content";
   url: string;
+  tags: string[];
 }
 
 interface HighlightResult {
