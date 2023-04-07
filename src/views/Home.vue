@@ -6,7 +6,7 @@
     <div class="grid grid-cols-2 grid-rows-2 gap-x-4 gap-y-6 mt-20">
       <DocCard
         title="产品手册"
-        href="https://meta.feishu.cn/wiki/wikcnmY0MQweLdbnlywkJJiDucd"
+        href="https://meta.feishu.cn/wiki/wikcnTRMsvWdaJq2SOenbuHjXmf"
         des="借助小程序、移动应用、网站应用等业务载体，为开发者提供能力"
       ></DocCard>
       <DocCard
@@ -18,14 +18,14 @@
       </DocCard>
       <DocCard
         title="API"
-        href="https://meta.feishu.cn/wiki/wikcnmY0MQweLdbnlywkJJiDucd"
+        href="https://api-docs.ark.online"
         des="依托“秒玩”的轻量形态及抖音多元分发优势"
       >
         <i-meta-api-doc></i-meta-api-doc>
       </DocCard>
       <DocCard
         title="更新说明"
-        href="https://meta.feishu.cn/wiki/wikcnmY0MQweLdbnlywkJJiDucd"
+        href="https://meta.feishu.cn/wiki/wikcnHI0MRne1nlT1ahnzPYYhBb"
         des="借助小程序代开发、生活服务商家应用等业务形态"
       >
         <i-meta-arrow-circle-up></i-meta-arrow-circle-up>

@@ -1,16 +1,20 @@
 <template>
   <header
-    class="flex justify-between p-6 items-center shadow-md fixed top-0 w-screen z-10"
+    class="flex justify-between py-6 px-[20vw] items-center shadow-md fixed top-0 w-screen z-10"
     style="
       backdrop-filter: saturate(50%) blur(8px);
       background-color: rgba(255, 255, 255, 0.7);
     "
   >
-    <div class="flex">
-      <img class="h-6 mr-2" src="/logo.png" alt="" />
-      <span class="font-bold text-base font-sans">搜索</span>
+    <div class="flex items-center">
+      <img class="h-6" src="/logo.png" alt="" />
+      <span
+        class="mx-2 block w-[1px] h-4"
+        style="background-color: rgba(60, 60, 60, 0.12)"
+      ></span>
+      <span class="text-base font-semibold">搜索</span>
     </div>
-    <ul class="flex gap-6 font-sans text-xs">
+    <ul class="flex gap-6 font-sans text-sm font-semibold">
       <li>
         <a
           class="hover:text-blue-600"

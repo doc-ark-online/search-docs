@@ -1,6 +1,6 @@
 <template>
   <Header></Header>
-  <div className="algolia-search px-20 py-24">
+  <div className="algolia-search px-[20vw] py-24">
     <div class="flex flex-col">
       <h1 class="text-2xl mb-4">
         {{ input ? `搜索的关键词是"${input}"` : `开始搜索文档` }}
