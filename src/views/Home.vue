@@ -7,26 +7,26 @@
       <DocCard
         title="产品手册"
         href="https://meta.feishu.cn/wiki/wikcnTRMsvWdaJq2SOenbuHjXmf"
-        des="借助小程序、移动应用、网站应用等业务载体，为开发者提供能力"
+        des="口袋方舟产品功能、特性、安装配置等最全面的参考资料"
       ></DocCard>
       <DocCard
         title="教程"
         href="https://meta.feishu.cn/wiki/wikcnmY0MQweLdbnlywkJJiDucd"
-        des="借助小程序、移动应用、网站应用等业务载体，为开发者提供能力"
+        des="梦想从此启航，立即使用我们的教程与案例上手游戏制作"
       >
         <i-meta-open-book></i-meta-open-book>
       </DocCard>
       <DocCard
         title="API"
         href="https://api-docs.ark.online"
-        des="依托“秒玩”的轻量形态及抖音多元分发优势"
+        des="通过 TypeScript 来口袋方舟编写属于自己的游戏逻辑"
       >
         <i-meta-api-doc></i-meta-api-doc>
       </DocCard>
       <DocCard
         title="更新说明"
         href="https://meta.feishu.cn/wiki/wikcnHI0MRne1nlT1ahnzPYYhBb"
-        des="借助小程序代开发、生活服务商家应用等业务形态"
+        des="获取口袋方舟产品功能、API的新特性"
       >
         <i-meta-arrow-circle-up></i-meta-arrow-circle-up>
       </DocCard>

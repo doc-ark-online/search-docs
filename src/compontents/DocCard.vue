@@ -11,9 +11,9 @@
     </div>
     <div class="flex gap-3 flex-col">
       <h1 class="text-[#171A1C] text-xl">{{ title }}</h1>
-      <!-- <p class="text-[#9B9FA6] text-sm">
+      <p class="text-[#9B9FA6] text-sm">
         {{ des }}
-      </p> -->
+      </p>
     </div>
   </a>
 </template>
