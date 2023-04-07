@@ -109,16 +109,16 @@ const input = ref("");
 const resultList = ref<SearchResponse<AlgoliaResult>>();
 const loading = ref(false);
 const hits = ref<Hit<AlgoliaResult>[]>([]);
-const select = ref("");
 const nextRef = ref<HTMLDivElement>();
 const page = ref(0);
 const translateX = ref(0);
 const width = ref(0);
 const docType = ref([
-  { width: 0, left: 0, value: "", text: "全部" },
-  { width: 0, left: 0, value: "tags:product-docs", text: "产品文档" },
+  // { width: 0, left: 0, value: "", text: "全部" },
+  // { width: 0, left: 0, value: "tags:product-docs", text: "产品文档" },
   { width: 0, left: 0, value: "tags:api-docs", text: "Api文档" },
 ]);
+const select = ref(docType.value[0].value);
 const ulRef = ref<HTMLUListElement>();
 const lisRef = ref<HTMLLIElement[]>();
 
