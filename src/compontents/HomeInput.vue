@@ -50,8 +50,9 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const docs = ref([
-  // { value: "", text: "全部" },
-  { value: "tags:api-docs", text: "Api文档" },
+  { value: "", text: "全部" },
+  { value: "tags:learning-docs", text: "教程" },
+  { value: "tags:api-docs", text: "Api" },
   // { width: 0, left: 0, value: "tags:product-docs", text: "产品文档" },
 ]);
 const select = ref(docs.value[0]);
