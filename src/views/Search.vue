@@ -63,18 +63,18 @@
           target="_blank"
         >
           <div class="flex items-center">
-            <i-meta-API
+            <i-meta-search-api
               v-if="item.tags.includes('api-docs')"
               class="w-7 mr-4"
-            ></i-meta-API>
-            <i-meta-product-doc
+            ></i-meta-search-api>
+            <i-meta-search-product
               v-if="item.tags.includes('product-docs')"
               class="w-7 mr-4"
-            ></i-meta-product-doc>
-            <i-meta-product-manual
-              v-if="item.tags.includes('learn-docs')"
+            ></i-meta-search-product>
+            <i-meta-search-learning
+              v-if="item.tags.includes('learning-docs')"
               class="w-7 mr-4"
-            ></i-meta-product-manual>
+            ></i-meta-search-learning>
             <div class="flex flex-col flex-1">
               <span class="text-sm" v-html="getText(item)"></span>
               <span

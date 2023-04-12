@@ -6,7 +6,7 @@
       background-color: rgba(255, 255, 255, 0.7);
     "
   >
-    <div class="flex items-center">
+    <div class="flex items-center cursor-pointer" @click="tapHome">
       <img class="h-6" src="/logo.png" alt="" />
       <span
         class="mx-2 block w-[1px] h-4"
@@ -50,5 +50,11 @@
     </ul>
   </header>
 </template>
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useRouter } from "vue-router";
+const router = useRouter();
+function tapHome() {
+  router.push({ name: "home" });
+}
+</script>
 <style scoped lang="less"></style>
