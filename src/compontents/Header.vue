@@ -12,7 +12,7 @@
         class="mx-2 block w-[1px] h-4"
         style="background-color: rgba(60, 60, 60, 0.12)"
       ></span>
-      <span class="text-base font-semibold">搜索</span>
+      <span class="text-base font-semibold">文档</span>
     </div>
     <ul class="flex gap-6 font-sans text-sm font-semibold">
       <li>
@@ -20,15 +20,23 @@
           class="hover:text-blue-600"
           target="_blank"
           href="https://creator.ark.online/"
-          >官网</a
+          >创作者</a
         >
       </li>
       <li>
         <a
           class="hover:text-blue-600"
           target="_blank"
-          href="https://meta.feishu.cn/wiki/wikcnmY0MQweLdbnlywkJJiDucd"
+          href="https://learning.ark.online/"
           >教程</a
+        >
+      </li>
+      <li>
+        <a
+          class="hover:text-blue-600"
+          target="_blank"
+          href="https://docs.ark.online/"
+          >产品手册</a
         >
       </li>
       <li>

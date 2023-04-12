@@ -3,7 +3,7 @@
     <div
       class="w-[680px] flex border border-[#9B9FA6] rounded-xl group-focus-within:border-blue-500 p-4"
     >
-      <div
+      <!-- <div
         class="group/button inline-block relative border-r border-[#3C3C3C1F]/10"
       >
         <button type="button" class="flex items-center">
@@ -23,10 +23,10 @@
             {{ item.text }}
           </li>
         </ul>
-      </div>
+      </div> -->
       <div class="flex flex-1">
         <i-meta-search
-          class="mx-3 text-[#9B9FA6] group-focus-within:text-blue-500"
+          class="mr-3 text-[#9B9FA6] group-focus-within:text-blue-500"
         ></i-meta-search>
         <input
           v-model="input"

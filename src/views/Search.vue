@@ -116,7 +116,7 @@ const width = ref(0);
 const docType = ref([
   { width: 0, left: 0, value: "", text: "全部" },
   { width: 0, left: 0, value: "tags:learning-docs", text: "教程" },
-  // { width: 0, left: 0, value: "tags:product-docs", text: "产品文档" },
+  { width: 0, left: 0, value: "tags:product-docs", text: "产品文档" },
   { width: 0, left: 0, value: "tags:api-docs", text: "API" },
 ]);
 const select = ref(docType.value[0].value);
