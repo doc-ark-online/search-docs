@@ -3,17 +3,17 @@
   <div className="flex justify-center items-center flex-col h-screen w-screen">
     <div class="flex items-center">
       <i-meta-text-logo class="h-14"></i-meta-text-logo>
-      <span
+      <!-- <span
         class="mx-2 block w-[1px] h-14"
         style="background-color: rgba(60, 60, 60, 0.12)"
       ></span>
-      <span class="text-5xl font-semibold">文档</span>
+      <span class="text-5xl font-semibold">文档</span> -->
     </div>
     <HomeInput class="mt-14"></HomeInput>
     <div class="grid grid-cols-2 grid-rows-2 gap-x-4 gap-y-6 mt-20">
       <DocCard
         title="教程"
-        href="https://meta.feishu.cn/wiki/wikcnmY0MQweLdbnlywkJJiDucd"
+        href="https://learning.ark.online"
         des="梦想从此启航，立即使用我们的教程与案例上手游戏制作"
       >
         <i-meta-open-book></i-meta-open-book>
@@ -27,7 +27,7 @@
       </DocCard>
       <DocCard
         title="产品手册"
-        href="https://meta.feishu.cn/wiki/wikcnTRMsvWdaJq2SOenbuHjXmf"
+        href="https://docs.ark.online"
         des="口袋方舟产品功能、特性、安装配置等最全面的参考资料"
       ></DocCard>
       <DocCard
