@@ -8,12 +8,14 @@
       <div class="flex gap-3">
         <div class="group relative flex-1 flex items-center">
           <i-meta-search
-            class="absolute left-2 text-slate-400 pointer-events-none group-focus-within:text-blue-500"
+            @click="() => enterSearch()"
+            class="cursor-pointer absolute left-2 text-slate-400 group-focus-within:text-blue-500"
           ></i-meta-search>
           <input
             class="focus:ring-2 focus:ring-blue-500 focus:outline-none appearance-none w-full text-sm leading-6 text-slate-900 placeholder-slate-400 rounded-md py-2 px-10 ring-1 ring-slate-200 shadow-sm"
             placeholder="请输入搜索内容"
             v-model="input"
+            @keyup.enter="() => enterSearch()"
             type="text"
           />
           <i-meta-delete
@@ -55,42 +57,44 @@
         共搜索到{{ resultList?.nbHits }}个结果
       </p>
     </div>
-    <ul v-if="input">
+    <ul v-if="resultList?.nbHits ?? 0 > 0">
       <li v-for="item in hits" :key="item.objectID">
-        <a
-          class="text-[#676D77] hover:underline hover:decoration-2 hover:decoration-blue-600 text-xl my-4 block"
-          :href="item.url"
-          target="_blank"
-        >
-          <div class="flex items-center">
-            <i-meta-search-api
-              v-if="item.tags.includes('api-docs')"
-              class="w-7 mr-4"
-            ></i-meta-search-api>
-            <i-meta-search-product
-              v-if="item.tags.includes('product-docs')"
-              class="w-7 mr-4"
-            ></i-meta-search-product>
-            <i-meta-search-learning
-              v-if="item.tags.includes('learning-docs')"
-              class="w-7 mr-4"
-            ></i-meta-search-learning>
-            <div class="flex flex-col flex-1">
+        <div class="flex items-center my-4">
+          <i-meta-search-api
+            v-if="item.tags.includes('api-docs')"
+            class="w-7 mr-4"
+          ></i-meta-search-api>
+          <i-meta-search-product
+            v-if="item.tags.includes('product-docs')"
+            class="w-7 mr-4"
+          ></i-meta-search-product>
+          <i-meta-search-learning
+            v-if="item.tags.includes('learning-docs')"
+            class="w-7 mr-4"
+          ></i-meta-search-learning>
+          <div class="flex flex-col flex-1">
+            <!-- class="text-[#676D77] hover:underline hover:decoration-2 hover:decoration-blue-600 text-xl w-fit" -->
+            <a
+              class="text-[#676D77] border-b-2 border-white hover:border-blue-600 text-xl w-fit"
+              :href="item.url"
+              target="_blank"
+            >
               <span class="text-sm" v-html="getText(item)"></span>
-              <span
-                class="text-[#676D77] text-xs mt-2"
-                v-html="getTreeText(item)"
-              ></span>
-            </div>
+            </a>
+            <span
+              class="text-[#676D77] text-xs mt-2"
+              v-html="getTreeText(item)"
+            ></span>
           </div>
-        </a>
+        </div>
         <hr />
       </li>
     </ul>
     <div ref="nextRef" class="mt-4">
       <div v-if="loading" class="text-center text-2xl my-4">加载中...</div>
-      <div v-if="input.length > 0 && resultList?.nbHits === 0">
-        没有搜索到任何结果
+      <div v-if="resultList?.nbHits === 0">没有搜索到任何结果</div>
+      <div v-if="isSearch === false" class="text-center text-2xl my-4">
+        请输入内容，回车进行搜索
       </div>
     </div>
   </div>
@@ -122,11 +126,21 @@ const docType = ref([
 const select = ref(docType.value[0].value);
 const ulRef = ref<HTMLUListElement>();
 const lisRef = ref<HTMLLIElement[]>();
+const isSearch = ref(false);
 
-watch([input, select], async ([v, s]) => {
-  if (!v) return;
+// watch([input, select], async ([v, s]) => {
+//   if (!v) return;
+//   getAlgoliaData();
+// });
+
+watch([select], async ([s]) => {
   getAlgoliaData();
 });
+
+function enterSearch() {
+  isSearch.value = true;
+  getAlgoliaData();
+}
 
 async function getAlgoliaData(isNext: boolean = false) {
   if (!input.value) return;
