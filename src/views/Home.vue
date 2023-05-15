@@ -20,7 +20,7 @@
       </DocCard>
       <DocCard
         title="更新说明"
-        href="https://meta.feishu.cn/wiki/wikcnHI0MRne1nlT1ahnzPYYhBb"
+        href="https://docs.ark.online/ReleaseNote/v0.24.0.0.html"
         des="获取口袋方舟产品功能、API的新特性"
       >
         <i-meta-arrow-circle-up></i-meta-arrow-circle-up>
