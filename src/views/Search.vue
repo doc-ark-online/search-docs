@@ -93,7 +93,10 @@
     <div ref="nextRef" class="mt-4">
       <div v-if="loading" class="text-center text-2xl my-4">加载中...</div>
       <div v-if="resultList?.nbHits === 0">没有搜索到任何结果</div>
-      <div v-if="isSearch === false" class="text-center text-2xl my-4">
+      <div
+        v-if="isSearch === false && (resultList?.nbHits ?? 0) === 0"
+        class="text-center text-2xl my-4"
+      >
         请输入内容，回车进行搜索
       </div>
     </div>
@@ -107,6 +110,7 @@ import algoliasearch, { type SearchIndex } from "algoliasearch";
 import type { Hit, SearchResponse } from "@algolia/client-search";
 import type { AlgoliaResult } from "../type";
 import { useRoute } from "vue-router";
+import { Config } from "../config";
 const route = useRoute();
 const searchIndex = ref<SearchIndex>();
 const input = ref("");
@@ -115,6 +119,7 @@ const loading = ref(false);
 const hits = ref<Hit<AlgoliaResult>[]>([]);
 const nextRef = ref<HTMLDivElement>();
 const page = ref(0);
+const hitsPerPage = 40;
 const translateX = ref(0);
 const width = ref(0);
 const docType = ref([
@@ -128,10 +133,15 @@ const ulRef = ref<HTMLUListElement>();
 const lisRef = ref<HTMLLIElement[]>();
 const isSearch = ref(false);
 
-// watch([input, select], async ([v, s]) => {
-//   if (!v) return;
-//   getAlgoliaData();
-// });
+const filters = computed(() => {
+  if (select.value === "tags:api-docs") {
+    return [select.value, "type:content"];
+  } else if (select.value.length === 0) {
+    return ["type:content"];
+  } else {
+    return [select.value];
+  }
+});
 
 watch([select], async ([s]) => {
   getAlgoliaData();
@@ -157,8 +167,7 @@ async function getAlgoliaData(isNext: boolean = false) {
     resultList.value = await searchIndex.value?.search<AlgoliaResult>(
       input.value,
       {
-        // facetFilters: ["tags:product-docs"],
-        // indexName: "all-docs",
+        query: input.value,
         attributesToRetrieve: [
           "hierarchy.lvl0",
           "hierarchy.lvl1",
@@ -184,9 +193,9 @@ async function getAlgoliaData(isNext: boolean = false) {
         snippetEllipsisText: "…",
         highlightPreTag: "<mark>",
         highlightPostTag: "</mark>",
-        hitsPerPage: 40,
+        hitsPerPage,
         page: page.value,
-        facetFilters: [select.value],
+        facetFilters: filters.value,
       }
     );
     if (isNext) {
@@ -212,7 +221,7 @@ function loadNextPage() {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         console.log("Element is visible");
-        getAlgoliaData(true);
+        if (hits.value.length >= hitsPerPage) getAlgoliaData(true);
       } else {
         console.log("Element is not visible");
       }
@@ -222,7 +231,7 @@ function loadNextPage() {
   observer.observe(nextRef.value!);
 }
 
-function selectHandler(item: typeof docType.value[0]) {
+function selectHandler(item: (typeof docType.value)[0]) {
   select.value = item.value;
   translateX.value = item.left;
   width.value = item.width;
@@ -239,17 +248,12 @@ function getTreeText(text: Hit<AlgoliaResult>) {
 }
 
 onMounted(async () => {
-  const client = algoliasearch(
-    // "89BNK6UU0A",
-    // "f691939e4fa8b414f92c84c288d2097a"
-    "I2PHYUBLCN",
-    "62ee775311415d26549e0e30fef5aa38"
-    // indexName: 'api-docs_prodigytech'
-  );
-  searchIndex.value = client.initIndex("api-docs_prodigytech");
+  const client = algoliasearch(Config.applicationId, Config.apiKey);
+  searchIndex.value = client.initIndex(Config.index);
   loadNextPage();
   if (route.query.search) {
     input.value = route.query.search as string;
+    getAlgoliaData();
   }
 
   if (route.query["doc-type"]) {
