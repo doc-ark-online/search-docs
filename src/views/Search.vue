@@ -134,10 +134,11 @@ const lisRef = ref<HTMLLIElement[]>();
 const isSearch = ref(false);
 
 const filters = computed(() => {
-  if (select.value === "tags:api-docs") {
-    return [select.value, "type:content"];
-  } else if (select.value.length === 0) {
-    return ["type:content"];
+  // if (select.value === "tags:api-docs") {
+  //   return [select.value, "type:content"];
+  // } else
+  if (select.value.length === 0) {
+    return [];
   } else {
     return [select.value];
   }
