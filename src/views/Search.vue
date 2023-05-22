@@ -78,6 +78,7 @@
               class="text-[#676D77] border-b-2 border-white hover:border-blue-600 text-xl w-fit"
               :href="item.url"
               target="_blank"
+              @click="tap(item)"
             >
               <span class="text-sm" v-html="getText(item)"></span>
             </a>
@@ -111,6 +112,7 @@ import type { Hit, SearchResponse } from "@algolia/client-search";
 import type { AlgoliaResult } from "../type";
 import { useRoute } from "vue-router";
 import { Config } from "../config";
+import { pandora } from "../pandora";
 const route = useRoute();
 const searchIndex = ref<SearchIndex>();
 const input = ref("");
@@ -149,6 +151,10 @@ watch([select], async ([s]) => {
 });
 
 function enterSearch() {
+  pandora.send("search_click", {
+    button: "搜索-搜索",
+    value: input.value,
+  });
   isSearch.value = true;
   getAlgoliaData();
 }
@@ -233,6 +239,9 @@ function loadNextPage() {
 }
 
 function selectHandler(item: (typeof docType.value)[0]) {
+  pandora.send("button_click", {
+    button: "搜索-" + item.text,
+  });
   select.value = item.value;
   translateX.value = item.left;
   width.value = item.width;
@@ -247,8 +256,19 @@ function getTreeText(text: Hit<AlgoliaResult>) {
     return "来自: " + arr.join(">");
   }
 }
+function tap(item: Hit<AlgoliaResult>) {
+  const url = new URL(item.url);
+  console.log("item", decodeURIComponent(url.hash.slice(1)));
+  const [a, type, name] = url.pathname.replace(".html", "").split("/");
+  pandora.send("search_tap_click", {
+    name,
+    type,
+    hash: decodeURIComponent(url.hash.slice(1)),
+  });
+}
 
 onMounted(async () => {
+  pandora.send("page_view_api", {});
   const client = algoliasearch(Config.applicationId, Config.apiKey);
   searchIndex.value = client.initIndex(Config.index);
   loadNextPage();

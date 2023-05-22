@@ -19,6 +19,12 @@
         <a
           class="hover:text-blue-600"
           target="_blank"
+          :data-pandora="
+            JSON.stringify({
+              key: 'click_api',
+              button: 'header-创作者',
+            })
+          "
           href="https://creator.ark.online/"
           >创作者</a
         >
@@ -27,6 +33,12 @@
         <a
           class="hover:text-blue-600"
           target="_blank"
+          :data-pandora="
+            JSON.stringify({
+              key: 'click_api',
+              button: 'header-教程',
+            })
+          "
           href="https://learning.ark.online/"
           >教程</a
         >
@@ -36,6 +48,12 @@
           class="hover:text-blue-600"
           target="_blank"
           href="https://docs.ark.online/"
+          :data-pandora="
+            JSON.stringify({
+              key: 'click_api',
+              button: 'header-产品手册',
+            })
+          "
           >产品手册</a
         >
       </li>
@@ -44,6 +62,12 @@
           class="hover:text-blue-600"
           target="_blank"
           href="https://api-docs.ark.online/"
+          :data-pandora="
+            JSON.stringify({
+              key: 'click_api',
+              button: 'header-API',
+            })
+          "
           >API</a
         >
       </li>
@@ -51,6 +75,12 @@
         <a
           class="hover:text-blue-600"
           target="_blank"
+          :data-pandora="
+            JSON.stringify({
+              key: 'click_api',
+              button: 'header-论坛',
+            })
+          "
           href="https://forum.ark.online/"
           >论坛</a
         >

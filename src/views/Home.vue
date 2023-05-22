@@ -14,12 +14,24 @@
       <DocCard
         title="教程"
         href="https://learning.ark.online"
+        :data-pandora="
+          JSON.stringify({
+            key: 'click_api',
+            button: '首页-教程',
+          })
+        "
         des="梦想从此启航，立即使用我们的教程与案例上手游戏制作"
       >
         <i-meta-open-book></i-meta-open-book>
       </DocCard>
       <DocCard
         title="更新说明"
+        :data-pandora="
+          JSON.stringify({
+            key: 'click_api',
+            button: '首页-更新说明',
+          })
+        "
         href="https://docs.ark.online/ReleaseNote/v0.24.0.0.html"
         des="获取口袋方舟产品功能、API的新特性"
       >
@@ -27,11 +39,23 @@
       </DocCard>
       <DocCard
         title="产品手册"
+        :data-pandora="
+          JSON.stringify({
+            key: 'click_api',
+            button: '首页-产品手册',
+          })
+        "
         href="https://docs.ark.online"
         des="口袋方舟产品功能、特性、安装配置等最全面的参考资料"
       ></DocCard>
       <DocCard
         title="API"
+        :data-pandora="
+          JSON.stringify({
+            key: 'click_api',
+            button: '首页-API',
+          })
+        "
         href="https://api-docs.ark.online"
         des="通过 TypeScript 来口袋方舟编写属于自己的游戏逻辑"
       >
@@ -44,5 +68,11 @@
 import Header from "../compontents/Header.vue";
 import DocCard from "../compontents/DocCard.vue";
 import HomeInput from "../compontents/HomeInput.vue";
+import { onMounted } from "vue";
+import { pandora } from "../pandora";
+
+onMounted(() => {
+  pandora.send("page_view_api", {});
+});
 </script>
 <style scoped lang="scss"></style>

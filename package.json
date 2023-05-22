@@ -17,6 +17,8 @@
     "@docsearch/js": "^3.3.3",
     "@metaapp/docsearch-react": "^3.3.4",
     "algoliasearch": "^4.15.0",
+    "detect-browser": "^5.3.0",
+    "metaapp-pandora-sdk": "^5.0.5",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },

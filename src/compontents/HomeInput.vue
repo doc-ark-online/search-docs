@@ -47,6 +47,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { pandora } from "../pandora";
 const router = useRouter();
 
 const docs = ref([
@@ -58,11 +59,15 @@ const docs = ref([
 const select = ref(docs.value[0]);
 const input = ref("");
 
-function selectDoc(item: typeof docs.value[0]) {
+function selectDoc(item: (typeof docs.value)[0]) {
   select.value = item;
 }
 
 function goSearch() {
+  pandora.send("search_click", {
+    button: "首页搜索",
+    value: input.value,
+  });
   router.push({
     name: "search",
     query: {
