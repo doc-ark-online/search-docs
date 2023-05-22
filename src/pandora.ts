@@ -15,6 +15,7 @@ Pandora.send(
     browser_name: browser?.name,
     browser_version: browser?.version,
     os_type: browser?.os,
+    docs_type: "search-docs",
   },
   {
     baseUrl: "https://push.233leyuan.com",
