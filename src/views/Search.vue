@@ -257,8 +257,11 @@ function selectHandler(item: (typeof docType.value)[0]) {
   changeUrlParams();
 }
 function getTreeText(text: Hit<AlgoliaResult>) {
-  const { lvl0, lvl1, lvl2, lvl3, lvl4, lvl5, lvl6 } = text.hierarchy;
-  const arr = [lvl0, lvl1, lvl2, lvl3, lvl4, lvl5, lvl6].filter((item) => item);
+  const { lvl0, lvl1, lvl2, lvl3, lvl4, lvl5, lvl6 } =
+    text._highlightResult!.hierarchy!;
+  const arr = [lvl0, lvl1, lvl2, lvl3, lvl4, lvl5, lvl6]
+    .filter((item) => item)
+    .map((item) => item!.value);
   if (text.type !== "content") {
     const num = Number(text.type.at(-1));
     return "来自: " + arr.splice(0, num).join(">");
