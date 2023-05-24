@@ -59,7 +59,12 @@
     </div>
     <ul v-if="resultList?.nbHits ?? 0 > 0">
       <li v-for="item in hits" :key="item.objectID">
-        <div class="flex items-center my-4">
+        <a
+          :href="item.url"
+          target="_blank"
+          @click="tap(item)"
+          class="flex items-center py-4 px-2 text-[#676D77] hover:text-white hover:bg-[#5468ff] rounded-sm"
+        >
           <i-meta-search-api
             v-if="item.tags.includes('api-docs')"
             class="w-7 mr-4"
@@ -74,20 +79,12 @@
           ></i-meta-search-learning>
           <div class="flex flex-col flex-1">
             <!-- class="text-[#676D77] hover:underline hover:decoration-2 hover:decoration-blue-600 text-xl w-fit" -->
-            <a
-              class="text-[#676D77] border-b-2 border-white hover:border-blue-600 text-xl w-fit"
-              :href="item.url"
-              target="_blank"
-              @click="tap(item)"
-            >
+            <span class="text-xl w-fit">
               <span class="text-sm" v-html="getText(item)"></span>
-            </a>
-            <span
-              class="text-[#676D77] text-xs mt-2"
-              v-html="getTreeText(item)"
-            ></span>
+            </span>
+            <span class="text-xs mt-2" v-html="getTreeText(item)"></span>
           </div>
-        </div>
+        </a>
         <hr />
       </li>
     </ul>
@@ -110,10 +107,11 @@ import Header from "../compontents/Header.vue";
 import algoliasearch, { type SearchIndex } from "algoliasearch";
 import type { Hit, SearchResponse } from "@algolia/client-search";
 import type { AlgoliaResult } from "../type";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { Config } from "../config";
 import { pandora } from "../pandora";
 const route = useRoute();
+const router = useRouter();
 const searchIndex = ref<SearchIndex>();
 const input = ref("");
 const resultList = ref<SearchResponse<AlgoliaResult>>();
@@ -150,12 +148,23 @@ watch([select], async ([s]) => {
   getAlgoliaData();
 });
 
+function changeUrlParams() {
+  router.replace({
+    name: "search",
+    query: {
+      search: input.value,
+      "doc-type": select.value,
+    },
+  });
+}
+
 function enterSearch() {
   pandora.send("search_click", {
     button: "搜索-搜索",
     value: input.value,
   });
   isSearch.value = true;
+  changeUrlParams();
   getAlgoliaData();
 }
 
@@ -245,6 +254,7 @@ function selectHandler(item: (typeof docType.value)[0]) {
   select.value = item.value;
   translateX.value = item.left;
   width.value = item.width;
+  changeUrlParams();
 }
 function getTreeText(text: Hit<AlgoliaResult>) {
   const { lvl0, lvl1, lvl2, lvl3, lvl4, lvl5, lvl6 } = text.hierarchy;
@@ -258,7 +268,6 @@ function getTreeText(text: Hit<AlgoliaResult>) {
 }
 function tap(item: Hit<AlgoliaResult>) {
   const url = new URL(item.url);
-  console.log("item", decodeURIComponent(url.hash.slice(1)));
   const [a, type, name] = url.pathname.replace(".html", "").split("/");
   pandora.send("search_tap_click", {
     name,
