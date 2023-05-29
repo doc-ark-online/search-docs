@@ -41,13 +41,14 @@
         <li
           v-for="item in docType"
           ref="lisRef"
-          class="text-sm leading-[48px] cursor-pointer"
+          class="text-sm leading-[48px] cursor-pointer flex justify-center items-center"
           :class="{
             'text-blue-500 font-bold active': select === item.value,
           }"
           @click="selectHandler(item)"
         >
           {{ item.text }}
+          <i-meta-external-link-icon v-if="item.value.includes('http')" />
         </li>
       </ul>
       <p
@@ -63,7 +64,7 @@
           :href="item.url"
           target="_blank"
           @click="tap(item)"
-          class="flex items-center py-4 px-2 text-[#676D77] hover:text-white hover:bg-[#5468ff] rounded-sm"
+          class="flex items-center py-4 px-2 text-[#676D77] hover:bg-opacity-[0.06] hover:bg-[#0075FF] rounded-sm"
         >
           <i-meta-search-api
             v-if="item.tags.includes('api-docs')"
@@ -127,6 +128,12 @@ const docType = ref([
   { width: 0, left: 0, value: "tags:learning-docs", text: "教程" },
   { width: 0, left: 0, value: "tags:product-docs", text: "产品文档" },
   { width: 0, left: 0, value: "tags:api-docs", text: "API" },
+  {
+    width: 0,
+    left: 0,
+    value: "https://forum.ark.online",
+    text: "论坛",
+  },
 ]);
 const select = ref(docType.value[0].value);
 const ulRef = ref<HTMLUListElement>();
@@ -251,6 +258,10 @@ function selectHandler(item: (typeof docType.value)[0]) {
   pandora.send("button_click", {
     button: "搜索-" + item.text,
   });
+  if (item.value.includes("http")) {
+    window.open(item.value);
+    return;
+  }
   select.value = item.value;
   translateX.value = item.left;
   width.value = item.width;

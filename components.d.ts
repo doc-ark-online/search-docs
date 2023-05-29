@@ -16,6 +16,7 @@ declare module '@vue/runtime-core' {
     IMetaBook: typeof import('~icons/meta/book')['default']
     IMetaDelete: typeof import('~icons/meta/delete')['default']
     IMetaDownArrow: typeof import('~icons/meta/down-arrow')['default']
+    IMetaExternalLinkIcon: typeof import('~icons/meta/external-link-icon')['default']
     IMetaOpenBook: typeof import('~icons/meta/open-book')['default']
     IMetaProductDoc: typeof import('~icons/meta/product-doc')['default']
     IMetaProductManual: typeof import('~icons/meta/product-manual')['default']
