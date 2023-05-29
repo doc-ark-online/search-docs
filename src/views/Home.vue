@@ -32,7 +32,7 @@
             button: '首页-更新说明',
           })
         "
-        href="https://docs.ark.online/ReleaseNote/v0.24.0.0.html"
+        href="https://docs.ark.online/ReleaseNote/ReleaseNote.html"
         des="获取口袋方舟产品功能、API的新特性"
       >
         <i-meta-arrow-circle-up></i-meta-arrow-circle-up>
