@@ -131,7 +131,8 @@ const docType = ref([
   {
     width: 0,
     left: 0,
-    value: "https://forum.ark.online",
+    value:
+      "https://forum.ark.online/search.php?searchsubmit=yes&mod=forum&srchtxt=",
     text: "论坛",
   },
 ]);
@@ -259,7 +260,7 @@ function selectHandler(item: (typeof docType.value)[0]) {
     button: "搜索-" + item.text,
   });
   if (item.value.includes("http")) {
-    window.open(item.value);
+    window.open(item.value + input.value);
     return;
   }
   select.value = item.value;
