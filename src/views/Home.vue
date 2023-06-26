@@ -62,10 +62,12 @@
         <i-meta-api-doc></i-meta-api-doc>
       </DocCard>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 <script lang="ts" setup>
 import Header from "../compontents/Header.vue";
+import Footer from "../compontents/Footer.vue";
 import DocCard from "../compontents/DocCard.vue";
 import HomeInput from "../compontents/HomeInput.vue";
 import { onMounted } from "vue";

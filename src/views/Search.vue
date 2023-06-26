@@ -89,7 +89,7 @@
         <hr />
       </li>
     </ul>
-    <div ref="nextRef" class="mt-4">
+    <div ref="nextRef" class="mt-4 mb-10">
       <div v-if="loading" class="text-center text-2xl my-4">加载中...</div>
       <div v-if="resultList?.nbHits === 0">没有搜索到任何结果</div>
       <div
@@ -99,6 +99,7 @@
         请输入内容，回车进行搜索
       </div>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -111,6 +112,7 @@ import type { AlgoliaResult } from "../type";
 import { useRoute, useRouter } from "vue-router";
 import { Config } from "../config";
 import { pandora } from "../pandora";
+import Footer from "../compontents/Footer.vue";
 const route = useRoute();
 const router = useRouter();
 const searchIndex = ref<SearchIndex>();
