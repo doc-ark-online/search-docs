@@ -2,7 +2,12 @@
   <Header></Header>
   <div className="flex justify-center items-center flex-col h-screen w-screen">
     <div class="flex items-center">
-      <i-meta-text-logo class="h-14"></i-meta-text-logo>
+      <!-- <i-meta-text-logo class="h-14"></i-meta-text-logo> -->
+      <img
+        class="h-14"
+        src="https://wstatic-01-ali.233leyuan.com/xyc/metaverse-docs/kd-logo-black.svg"
+        alt="logo"
+      />
       <!-- <span
         class="mx-2 block w-[1px] h-14"
         style="background-color: rgba(60, 60, 60, 0.12)"
