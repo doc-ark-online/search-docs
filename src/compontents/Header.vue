@@ -7,7 +7,11 @@
     "
   >
     <div class="flex items-center cursor-pointer" @click="tapHome">
-      <img class="h-6" src="/logo.png" alt="" />
+      <img
+        class="h-6"
+        src="https://wstatic-01-ali.233leyuan.com/xyc/metaverse-docs/kd-logo-black.svg"
+        alt=""
+      />
       <span
         class="mx-2 block w-[1px] h-4"
         style="background-color: rgba(60, 60, 60, 0.12)"
