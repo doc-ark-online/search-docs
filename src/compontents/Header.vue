@@ -26,11 +26,25 @@
           :data-pandora="
             JSON.stringify({
               key: 'click_api',
-              button: 'header-创作者',
+              button: 'header-官网',
             })
           "
           href="https://creator.ark.online/"
-          >创作者</a
+          >官网</a
+        >
+      </li>
+      <li>
+        <a
+          class="hover:text-blue-600"
+          target="_blank"
+          :data-pandora="
+            JSON.stringify({
+              key: 'click_api',
+              button: 'header-论坛',
+            })
+          "
+          href="https://forum.ark.online/"
+          >论坛</a
         >
       </li>
       <li>
@@ -79,14 +93,14 @@
         <a
           class="hover:text-blue-600"
           target="_blank"
+          href="http://portal.ark.online/"
           :data-pandora="
             JSON.stringify({
               key: 'click_api',
-              button: 'header-论坛',
+              button: 'header-创作者',
             })
           "
-          href="https://forum.ark.online/"
-          >论坛</a
+          >创作者</a
         >
       </li>
     </ul>
