@@ -272,7 +272,7 @@ function selectHandler(item: (typeof docType.value)[0]) {
 }
 function getTreeText(text: Hit<AlgoliaResult>) {
   const { lvl0, lvl1, lvl2, lvl3, lvl4, lvl5, lvl6 } =
-    text._highlightResult!.hierarchy!;
+    text._highlightResult!.hierarchy ?? {};
   const arr = [lvl0, lvl1, lvl2, lvl3, lvl4, lvl5, lvl6]
     .filter((item) => item)
     .map((item) => item!.value);
